@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Export-List-To-XL</string>
+    <string name="app_name">Employees</string>
+    <string name="employee_id">Employee ID:</string>
+    <string name="name">Name</string>
 </resources>
