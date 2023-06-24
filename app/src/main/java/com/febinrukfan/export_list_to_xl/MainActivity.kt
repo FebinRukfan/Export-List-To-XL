@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.febinrukfan.export_list_to_xl.application.GlobalSpace
 import com.febinrukfan.export_list_to_xl.data.model.Employee
 import com.febinrukfan.export_list_to_xl.databinding.ActivityMainBinding
@@ -31,17 +33,32 @@ class MainActivity : AppCompatActivity() {
         bindingObj = DataBindingUtil.setContentView(this, R.layout.activity_main)
         (application as GlobalSpace).getAppComponentInstance().inject(this)
 
-
-
         mainActivityViewModel =
             ViewModelProvider(this, mainActivityViewModelFactory)[MainActivityViewModel::class.java]
 
         newEmployee = Employee(1,"Febin")
         mainActivityViewModel.addEmployee(newEmployee)
 
-//        bindingObj.fabBtn.se
+        initializeEmployeeList()
+        displayEmployeeList()
     }
 
+
+
+    private fun initializeEmployeeList() {
+
+        empAdapter = EmployeeAdapter()
+        bindingObj.rvEmployees.apply {
+            adapter = empAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
+    }
+
+    private fun displayEmployeeList() {
+        mainActivityViewModel.allEmployeeDta.observe(this) {
+            empAdapter.setEmployeeList(it)
+        }
+    }
 
 }
 
