@@ -9,6 +9,7 @@ interface EmployeeRepository {
 
     suspend fun addEmployee(employee: Employee)
     suspend fun deleteEmployee(employee: Employee)
+    suspend fun deleteAllEmployee()
     fun getAllEmployees():Flow<List<Employee>>
 
     }
