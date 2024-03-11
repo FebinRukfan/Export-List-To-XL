@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface EmployeeDao {
 
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
     suspend fun addEmployee(employee: Employee)
     @Delete
     suspend fun deleteEmployee(employee: Employee)

@@ -15,6 +15,9 @@ class EmployeeDatabaseImpl(private val localDataSource: LocalDataSource) : Emplo
         localDataSource.deleteEmployee(employee)
     }
 
+    override suspend fun deleteAllEmployee() {
+    }
+
     override fun getAllEmployees(): Flow<List<Employee>> {
         return localDataSource.getAllEmployees()
     }

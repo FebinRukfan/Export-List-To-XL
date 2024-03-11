@@ -6,14 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.febinrukfan.export_list_to_xl.application.GlobalSpace
 import com.febinrukfan.export_list_to_xl.data.model.Employee
 import com.febinrukfan.export_list_to_xl.databinding.ActivityMainBinding
 import com.febinrukfan.export_list_to_xl.presentation.adapter.EmployeeAdapter
 import com.febinrukfan.export_list_to_xl.presentation.viewmodel.MainActivityViewModel
 import com.febinrukfan.export_list_to_xl.presentation.viewmodel.MainActivityViewModelFactory
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -48,18 +46,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun addEmployeetoDB() {
 
-//        val ids = arrayListOf(1,2,3,4,5,6,7,8,9,10)
         val names = arrayListOf("Febin","Thomas","Suresh","Susan","Devika","Jins","David","Andrew","Martin","Josbin")
 
-        mainActivityViewModel.deleteEmployee(newEmployee)
-
+        mainActivityViewModel.deleteAllEmployee()
 
         for ((index, value) in names.withIndex()) {
 
             lifecycleScope.launch {
-
-                mainActivityViewModel.deleteEmployee(newEmployee)
-
 
                 newEmployee = Employee(index+1,value)
                 mainActivityViewModel.addEmployee(newEmployee)
